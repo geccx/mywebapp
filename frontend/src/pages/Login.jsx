@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Login(){
+export default function Login() {
+  const API = import.meta.env.VITE_API;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const API = import.meta.env.VITE_API;
 
   const login = async () => {
     try {
@@ -21,7 +21,7 @@ export default function Login(){
       <div className="auth-card">
         <h2>Login</h2>
         <input placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
+        <input placeholder="Password" type="password" value={password} onChange={e=>setPassword(e.target.value)} />
         <button onClick={login}>Login</button>
         <div className="muted">Don't have an account? <a href="/register">Register</a></div>
       </div>

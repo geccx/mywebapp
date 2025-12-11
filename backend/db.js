@@ -1,18 +1,13 @@
 // db.js
 const mysql = require("mysql2/promise");
 
-// -------------------------------
-// RAILWAY DATABASE CONFIG SUPPORT
-// -------------------------------
-
-// Railway provides these variables automatically:
-const DB_HOST = process.env.MYSQLHOST || process.env.DB_HOST;
-const DB_USER = process.env.MYSQLUSER || process.env.DB_USER;
-const DB_PASS = process.env.MYSQLPASSWORD || process.env.DB_PASS;
-const DB_NAME = process.env.MYSQLDATABASE || process.env.DB_NAME;
+// Railway-friendly env variables with local fallback
+const DB_HOST = process.env.MYSQLHOST || process.env.DB_HOST || "localhost";
+const DB_USER = process.env.MYSQLUSER || process.env.DB_USER || "root";
+const DB_PASS = process.env.MYSQLPASSWORD || process.env.DB_PASS || "";
+const DB_NAME = process.env.MYSQLDATABASE || process.env.DB_NAME || "mywebappdb";
 const DB_PORT = process.env.MYSQLPORT || process.env.DB_PORT || 3306;
 
-// Create connection pool
 const pool = mysql.createPool({
   host: DB_HOST,
   user: DB_USER,
@@ -20,20 +15,15 @@ const pool = mysql.createPool({
   database: DB_NAME,
   port: DB_PORT,
   waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+  connectionLimit: 10
 });
 
-// ---------------------------------------
-// AUTO-CREATE TABLES ON BACKEND STARTUP
-// ---------------------------------------
+// Auto create tables
 (async () => {
   try {
     const conn = await pool.getConnection();
 
-    console.log("🔌 Connected to MySQL:", DB_HOST);
-
-    const createUsers = `
+    await conn.query(`
       CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255),
@@ -42,24 +32,21 @@ const pool = mysql.createPool({
         profile_image VARCHAR(500),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
-    `;
+    `);
 
-    const createItems = `
+    await conn.query(`
       CREATE TABLE IF NOT EXISTS items (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
+        name VARCHAR(255),
         image VARCHAR(500),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
-    `;
+    `);
 
-    await conn.query(createUsers);
-    await conn.query(createItems);
-
+    console.log("✅ Tables ensured");
     conn.release();
-    console.log("✅ Tables ensured (users, items)");
   } catch (err) {
-    console.error("❌ Error initializing database:", err);
+    console.error("DB initialization error:", err);
   }
 })();
 

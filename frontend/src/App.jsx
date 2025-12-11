@@ -8,12 +8,12 @@ function PrivateRoute({ children }) {
   return token ? children : <Navigate to="/" />;
 }
 
-export default function App(){
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
       </Routes>
     </BrowserRouter>
