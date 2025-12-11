@@ -188,9 +188,10 @@ app.delete("/api/items/:id", auth, async (req, res) => {
 app.get("/health", (req, res) => res.json({ ok: true }));
 
 // Fallthrough for unknown API routes: return JSON (helps frontend avoid HTML responses)
-app.use("/api/*", (req, res) => {
+app.use("/api/:any*", (req, res) => {
   res.status(404).json({ message: "API route not found" });
 });
+
 
 // Start server
 const PORT = process.env.PORT || 5000;
