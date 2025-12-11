@@ -4,7 +4,7 @@ const mysql = require("mysql2/promise");
 // Railway-friendly env variables with local fallback
 const DB_HOST = process.env.MYSQLHOST || process.env.DB_HOST || "localhost";
 const DB_USER = process.env.MYSQLUSER || process.env.DB_USER || "root";
-const DB_PASS = process.env.MYSQLPASSWORD || process.env.DB_PASS || "";
+const DB_PASS = process.env.MYSQLPASSWORD || process.env.DB_PASS || "123456789";
 const DB_NAME = process.env.MYSQLDATABASE || process.env.DB_NAME || "mywebappdb";
 const DB_PORT = process.env.MYSQLPORT || process.env.DB_PORT || 3306;
 
