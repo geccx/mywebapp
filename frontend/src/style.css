@@ -1,0 +1,207 @@
+/* Global */
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: #111827;
+}
+
+/* Navbar */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #0f172a, #111827);
+  color: white;
+}
+.nav-left {
+  font-weight: 700;
+  font-size: 18px;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.nav-item {
+  color: rgba(255, 255, 255, 0.9);
+  margin-right: 12px;
+}
+
+/* Profile picture fixed small circular */
+.pfpic {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+/* Dropdown container */
+.profile-dropdown {
+  position: relative;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+/* BLACK BUTTONS in dropdown */
+.dropdown-btn {
+  background: #000000;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  text-align: left;
+  width: 140px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-btn:hover {
+  background: #333333;
+}
+
+/* Profile modal image */
+.profile-modal-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;       /* make it circular */
+  object-fit: cover;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+}
+
+/* Inputs & buttons */
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ee;
+}
+button {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+button.btn-muted {
+  background: #e5e7eb;
+  color: #111827;
+}
+button.btn-danger {
+  background: var(--danger);
+}
+
+/* Auth centered */
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.auth-card {
+  width: 360px;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
+}
+
+/* Items list */
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 14px;
+}
+.item-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fbfdff;
+  border: 1px solid #eef2ff;
+  margin-bottom: 10px;
+}
+.item-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.modal-card {
+  width: 90%;
+  max-width: 720px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #edf2f7;
+}
+.modal-body {
+  padding: 16px;
+}
+
+/* Utilities */
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+.top-actions {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
